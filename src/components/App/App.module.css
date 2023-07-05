@@ -1,8 +1,11 @@
 .boxApp {
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 40;
-  color: #010101;
+
+  background-color: #d8d4d4;
+  color: #0a0909;
 }

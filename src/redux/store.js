@@ -1,54 +1,15 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { devToolsEnhancer } from '@redux-devtools/extension';
 
-export const deposit = value => {
-  return {
-    type: 'account/deposit',
-    payload: value,
-  };
-};
+import { userReducer } from './userSlice';
+import { accountReducer } from './accountSlice';
+import { previewReducer } from './previewSlice';
 
-export const withdraw = value => {
-  return {
-    type: 'account/withdraw',
-    payload: value,
-  };
-};
-
-const initialState = {
-  preview: {},
-  account: {
-    length: 20,
-    height: 35,
-    width: 10,
-    balance: 1000,
-  },
-};
-
-const rootReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'account/deposit':
-      return {
-        ...state,
-        account: {
-          ...state.account,
-          balance: state.account.balance + action.payload,
-        },
-      };
-
-    case 'account/withdraw':
-      return {
-        ...state,
-        account: {
-          ...state.account,
-          balance: state.account.balance - action.payload,
-        },
-      };
-
-    default:
-      return state;
-  }
-};
+const rootReducer = combineReducers({
+  user: userReducer,
+  account: accountReducer,
+  preview: previewReducer,
+});
 
 const enhancer = devToolsEnhancer();
 
